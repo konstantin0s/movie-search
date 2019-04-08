@@ -1,7 +1,18 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 
 class MovieCard extends Component {
     state = { movieData: {} }
+
+   componentDidMount() {
+        axios.get(`https://www.omdbapi.com/?apikey=397560a3&i=${this.props.movieID}&plot=full`)
+        .then(res => res.data).then(res => {
+                this.setState({ movieData: res });
+            });
+    }
+
+
     render() { 
 
         const { 
